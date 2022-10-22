@@ -1,0 +1,8 @@
+---
+- name: Install sudo package (RHEL)
+  yum:
+    name: sudo
+    state: present
+    update_cache: yes
+  tags: sudo
+...

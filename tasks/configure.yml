@@ -1,0 +1,26 @@
+---
+- name: Create sudo group
+  group:
+    name: '{{ sudo_group }}'
+    state: present
+  tags: sudo
+
+- name: Validate includedir in sudoers.d
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^#includedir'
+    line: "#includedir /etc/sudoers.d"
+    state: present
+    validate: "/usr/sbin/visudo -cf %s"
+  tags: sudo
+
+- name: Add group to sudo
+  lineinfile:
+    path: '/etc/sudoers.d/{{ sudo_group }}'
+    line: '{{ sudo_config_line }}'
+    state: present
+    mode: 0440
+    create: yes
+    validate: 'visudo -cf %s'
+  tags: sudo
+...

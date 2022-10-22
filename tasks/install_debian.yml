@@ -1,0 +1,8 @@
+---
+- name: Install sudo package (Debian)
+  apt:
+    name: sudo
+    state: present
+    update_cache: yes
+  tags: sudo
+...

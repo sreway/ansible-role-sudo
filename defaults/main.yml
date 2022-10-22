@@ -1,0 +1,4 @@
+---
+sudo_group: sudo
+sudo_config_line: '%{{ sudo_group }} ALL=(ALL) NOPASSWD: ALL'
+...
